@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import FilterButtons from "./components/FilterButtons";
+import Tickets from "./components/Tickets";
+import MessageInfo from "./components/MessageInfo";
+import Pagination from "./components/Pagination";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="container">
+            <Header />
+            <FilterButtons />
+            <div className="row gap-3 mt-4">
+                <Tickets />
+                <MessageInfo />
+            </div>
+            <Pagination />
+        </div>
+    )
 }
 
-export default App;
+export default App
