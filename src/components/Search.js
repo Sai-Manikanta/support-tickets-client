@@ -8,6 +8,7 @@ function Search() {
     const handleSubmit = e => {
         e.preventDefault();
         searchTickets(searchQuery);
+        setSearchQuery('');
     }
 
     return (

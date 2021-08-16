@@ -20,21 +20,23 @@ function TicketsContextProvider({ children }) {
             .then(res => {
                 const { tickets } = res.data.data;
 
-                setData({ 
-                    tickets: tickets, 
-                    count: tickets.length 
-                });
-                setFilteredData({
-                    tickets: tickets,
-                    count: tickets.length
-                })
+                setData({ tickets, count: tickets.length });
+                setFilteredData({ tickets, count: tickets.length })
             })
             .catch(err => console.log(err.message))
     }, [])
 
     const filterTickets = status => {
         if(status === 'all'){
-            setFilteredData({ ...data });
+            axios.get('/v1/tickets')
+            .then(res => {
+                const { tickets } = res.data.data;
+
+                setData({ tickets, count: tickets.length });
+                setFilteredData({ tickets, count: tickets.length })
+            })
+            .catch(err => console.log(err.message))
+
             setSelectedTicket({});
             return 
         }
@@ -45,22 +47,12 @@ function TicketsContextProvider({ children }) {
     }
 
     const searchTickets = searchQuery => {
-        // const searchedTickets = data.tickets.filter(ticket => {
-        //     return ticket.subject.toLowerCase().includes(searchQuery.toLowerCase());
-        // })
-
         axios.get(`/v1/tickets?searchBy=subject&search=${searchQuery}`)
          .then(res => {
             const { tickets } = res.data.data;
                 
-            setData({ 
-                tickets: tickets, 
-                count: tickets.length 
-            });
-            setFilteredData({
-                tickets: tickets,
-                count: tickets.length
-            })
+            setData({ tickets, count: tickets.length });
+            setFilteredData({ tickets, count: tickets.length });
          })
          .catch(err => console.log(err))
     }

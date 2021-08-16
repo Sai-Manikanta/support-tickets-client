@@ -1,4 +1,6 @@
+import { FaCalendarAlt } from 'react-icons/fa'
 import { useTicketsContext } from './../contexts/ticketsContext'
+import Status from './Status';
 
 function Ticket({ ticket }) { 
     const { subject, posted_date, status } = ticket;
@@ -12,8 +14,12 @@ function Ticket({ ticket }) {
         >
             <p className="mb-0">{subject}</p>
             <div className="d-flex">
-                <span>{posted_date.split('T')[0]} ,</span>
-                <span className="ms-2">{status}</span>
+                <span className="d-flex align-items-center">
+                    <FaCalendarAlt color="white" className="me-1" />
+                    {posted_date.split('T')[0]} ,
+                </span>
+                {/* <span className="ms-2">{status}</span> */}
+                <Status status={status} />
             </div>
         </div>
     )
